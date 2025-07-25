@@ -1038,11 +1038,11 @@ async def ping_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 import asyncio
+from telegram.ext import ApplicationBuilder
 
 async def main():
     print("🔧 Script running...")
     app = ApplicationBuilder().token(BOT_TOKEN).build()
-    print("🚀 Bot is starting...")
 
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(CallbackQueryHandler(handle_response, pattern="^(Yes|No|Probably|Don't know)$"))
@@ -1075,6 +1075,5 @@ async def main():
     print("📡 Running polling...")
     await app.run_polling()
 
-# Change the __main__ block
 if __name__ == "__main__":
     asyncio.run(main())
