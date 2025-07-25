@@ -1037,12 +1037,10 @@ async def ping_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-import asyncio
-from telegram.ext import ApplicationBuilder
-
-async def main():
+def main():
     print("🔧 Script running...")
     app = ApplicationBuilder().token(BOT_TOKEN).build()
+    print("🚀 Bot is starting...")
 
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(CallbackQueryHandler(handle_response, pattern="^(Yes|No|Probably|Don't know)$"))
@@ -1070,10 +1068,14 @@ async def main():
     app.add_error_handler(error_handler)
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), check_game_message))  # game first
 
+    # ✅ Correct indentation here:
     app.job_queue.run_once(lambda ctx: asyncio.create_task(send_random_auto_messages(app)), 1)
 
     print("📡 Running polling...")
-    await app.run_polling()
+    app.run_polling()
+
+
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    print("🔧 Script running...")
+    main()
