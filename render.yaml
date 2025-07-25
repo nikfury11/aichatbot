@@ -1,13 +1,9 @@
 services:
   - type: web
     name: gpt2-telegram-bot
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python gpt2.py
+    env: docker  # ✅ Use Docker instead of 'python'
+    dockerfilePath: ./Dockerfile  # ✅ Tell Render to use your Dockerfile
     plan: free
-    build:
-      environment:
-        PYTHON_VERSION: 3.10
     envVars:
       - key: BOT_TOKEN
         sync: false
@@ -17,8 +13,8 @@ services:
         sync: false
       - key: OPENWEATHERMAP_API_KEY
         sync: false
-    healthCheckPath: /
     disk:
       name: data
       mountPath: /data
       sizeGB: 1
+
