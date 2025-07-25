@@ -1037,7 +1037,9 @@ async def ping_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 
-def main():
+import asyncio
+
+async def main():
     print("🔧 Script running...")
     app = ApplicationBuilder().token(BOT_TOKEN).build()
     print("🚀 Bot is starting...")
@@ -1068,14 +1070,11 @@ def main():
     app.add_error_handler(error_handler)
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), check_game_message))  # game first
 
-    # ✅ Correct indentation here:
     app.job_queue.run_once(lambda ctx: asyncio.create_task(send_random_auto_messages(app)), 1)
 
     print("📡 Running polling...")
-    app.run_polling()
+    await app.run_polling()
 
-
-
+# Change the __main__ block
 if __name__ == "__main__":
-    print("🔧 Script running...")
-    main()
+    asyncio.run(main())
