@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: gpt2-telegram-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python gpt2.py
+    plan: free
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: STABILITY_API_KEY
+        sync: false
+      - key: OPENWEATHERMAP_API_KEY
+        sync: false
+    healthCheckPath: /
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
