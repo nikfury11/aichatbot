@@ -1,4 +1,4 @@
-python-telegram-bot==20.8
+python-telegram-bot[job-queue]==20.8
 wikipedia==1.4.0
 duckduckgo-search==6.1.7
 gTTS==2.5.1
