@@ -1,15 +1,8 @@
-# Use Python 3.10
-FROM python:3.10-slim
+FROM python:3.10
 
-# Set working directory in the container
 WORKDIR /app
+COPY . .
 
-# Copy all your project files into the container
-COPY . /app
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install your Python dependencies
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
-
-# Run your bot
 CMD ["python", "gpt2.py"]
